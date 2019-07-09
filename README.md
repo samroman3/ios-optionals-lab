@@ -387,7 +387,7 @@ print(zipCodeInt)
 
 ```
 
-## Question 19 todo
+## Question 19 done
 
 Some students were asked some questions about their favorite foods and colors and the answers were stored in an array `studentInfo`.
 
@@ -399,8 +399,26 @@ Some students were asked some questions about their favorite foods and colors an
 
 `let studentInfo: [(String, String?, String?)] = [("Bill", "Burgers", "Blue"), ("Rita", nil, "Red"), ("Peter", "Pizza", "Purple"), ("Sarah", "Sandwiches", nil), ("Jeff", nil, nil), ("Lucy", "Leftovers", "Lilac"), ("Mike", "Meat", "Mauve"), ("Gemma", nil, "Green")]`
 
+```var allValue:[(String, String, String)] = []
 
-## Question 20 - todo 
+for info in studentInfo {
+if info.2 == nil {
+print("\(info.0) doesnt have a favorite color")
+}
+if info.1 == nil && info.2 == nil {
+print("\(info.0) doesnt have a favorite food or color")
+}
+if let favFood = info.1 {
+if let favColor = info.2 {
+allValue += ([(info.0, favFood, favColor)])
+}
+}
+}
+print(allValue)
+```
+
+
+## Question 20 - done
 
 Given an optional array of optional tuples of optional UInt8s,
 
@@ -410,6 +428,39 @@ Given an optional array of optional tuples of optional UInt8s,
 
 `let possibleColors: [(r: UInt8?, g: UInt8?, b: UInt8?)?]? = [(128, 21, 7), (0, 0, 0), nil, (nil, 25, 82), (255, 255, 255), nil, (200, 100, nil), (120, nil, 23), (0, 255, 106), (nil, nil, nil), nil, (100, 100, 200)]`
 
+```
+var nilCounter = 0
+
+for i in possibleColors!{
+
+if i == nil{
+nilCounter += 1
+}
+if i == nil {
+
+}
+if let tuple = i {
+if let index = tuple.r {
+print("r: \(index)")
+} else {
+nilCounter += 1
+}
+if let index = tuple.g {
+print("g: \(index)")
+}else {
+nilCounter += 1
+}
+if let index = tuple.b {
+print("b: \(index)")
+}else {
+nilCounter += 1
+}
+}
+}
+
+print("There are \(nilCounter) nil values")
+```
+
 
 ## Question 21 done
 Consider the following nested optional. It corresponds to a number inside a box inside a box inside a box.
@@ -418,8 +469,17 @@ Consider the following nested optional. It corresponds to a number inside a box 
 
 - Optionally bind and print number.
 ```
+//force unwrapping
 let number: Int??? = 10
+var value = number!!!
+print(value)
 
+
+
+
+//optionally binding
+
+let number: Int??? = 10
 if let number = number{
 if let number1 = number{
 if let number2 = number1{
